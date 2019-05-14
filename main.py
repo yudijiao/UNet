@@ -51,10 +51,10 @@ def train():
     #加载数据集
     liver_dataset = LiverDataset("data/train", transform=x_transform, target_transform=y_transform)
     dataloader = DataLoader(liver_dataset, batch_size=batch_size, shuffle=True,num_workers=4)
-    # DataLoader:Combines a dataset and a sampler,
+    # DataLoader:该接口主要用来将自定义的数据读取接口的输出或者PyTorch已有的数据读取接口的输入按照batch size封装成Tensor
     # batch_size：how many samples per minibatch to load，这里为4，数据集大小400，所以一共有100个minibatch
-    # shuffle:每个epoch将数据打乱，这里epoch=10
-    # num_workers：使用多进程加载的进程数，0代表不使用多进程 
+    # shuffle:每个epoch将数据打乱，这里epoch=10。一般在训练数据中会采用
+    # num_workers：表示通过多个进程来导入数据，可以加快数据导入速度 
     train_model(model,criterion,optimizer,dataloader)
 
 #测试
